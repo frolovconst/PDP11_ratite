@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include<stdlib.h>
 
+
+//Fair work
+////////////////////////////////////////////////////////////////////////////////
 const int IMG_WIDTH=64;
 
 bool GetBitInByte(byte inByte, int index) {
@@ -32,6 +35,18 @@ bool GetBitInByteArray(byte *array, int index){
 }
 
 
+void PutLogoIntoRom(char *path){
+    byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
+    FILE *logoBin;
+    logoBin = fopen(path, "rb");
+    for(int i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
+        fscanf(logoBin,"%c",&VROM[i]);
+    }
+    fclose(logoBin);
+}
+
+//Draft work
+////////////////////////////////////////////////////////////////////////////////
 void CreateBinLogo(char path[], char resultPath[]) {
     const int IMG_WIDTH=64;
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
