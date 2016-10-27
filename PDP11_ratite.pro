@@ -8,3 +8,6 @@ SOURCES += main.c \
 
 HEADERS += \
     logobin.h
+
+DISTFILES += \
+    logo.txt
