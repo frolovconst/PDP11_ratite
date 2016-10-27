@@ -2,11 +2,12 @@
 #include <stdio.h>
 #include<stdlib.h>
 
+#define IMG_WIDTH 64
 
 
 //Fair work
 ////////////////////////////////////////////////////////////////////////////////
-const int IMG_WIDTH=64;
+//const int IMG_WIDTH=64;
 
 bool GetBitInByte(byte inByte, int index) {
     return (inByte >> (7 - index)) & 1;
@@ -50,7 +51,7 @@ void PutLogoIntoRom(char *path){
 //Draft work
 ////////////////////////////////////////////////////////////////////////////////
 void CreateBinLogo(char path[], char resultPath[]) {
-    const int IMG_WIDTH=64;
+    //const int IMG_WIDTH=64;
     int i;
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
     FILE *logoImg;
