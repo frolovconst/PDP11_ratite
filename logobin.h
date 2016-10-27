@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #ifndef LOGOBIN_H
 #define LOGOBIN_H
+#include<stdint.h>
 #include<stdbool.h>
 #include<math.h>
 

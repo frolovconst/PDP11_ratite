@@ -6,6 +6,16 @@
 //Fair work
 ////////////////////////////////////////////////////////////////////////////////
 const int IMG_WIDTH=64;
+byte PDP_MEMORY[65544];
+const int RAM_START_INDEX = 0;
+const int VRAM_START_INDEX = 16384;
+const int ROM_START_INDEX = 49552;
+const int IO_START_INDEX = 57344;
+
+bool InitializeMemory(byte mem[65544]){
+
+    return true;
+}
 
 bool GetBitInByte(byte inByte, int index) {
     return (inByte >> (7 - index)) & 1;
@@ -136,7 +146,7 @@ void ShowBinLogo(char *path){
 
 void testingFoo() {
 //    byte tW = 0;
-    ShowBinLogo("/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.txt");
+    ShowBinLogo("../PDP11_ratite/logo.txt");
 //    CreateBinLogo("/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.bmp", "/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.txt");
 //    FILE *logoImg;
 //    logoImg = fopen("/Users/carioca/CodingProjects/Qt/test/logo.bmp", "rb");
