@@ -11,11 +11,28 @@ byte PDP_MEMORY[65544];
 const int RAM_START_INDEX = 0;
 const int VRAM_START_INDEX = 16384;
 const int ROM_START_INDEX = 49552;
+const int LOGO_START_INDEX = 56832;
 const int IO_START_INDEX = 57344;
+const char *LOGO_PATH = "../PDP11_ratite/files/logo.txt";
+
+bool CopyLogoToROM(char *logoPath, byte mem[65544]){
+    int i;
+    FILE *logoBin;
+    logoBin = fopen(logoPath, "rb");
+    for(i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
+        fscanf(logoBin,"%c",&mem[i + LOGO_START_INDEX]);
+    }
+    fclose(logoBin);
+}
 
 bool InitializeMemory(byte mem[65544]){
-
+    CopyLogoToROM(LOGO_PATH, mem);
     return true;
+}
+
+bool StartEmulator(byte mem[65544]){
+    InitializeMemory(mem);
+    return false;
 }
 
 bool GetBitInByte(byte inByte, int index) {
@@ -128,7 +145,7 @@ void CreateBinLogo(char path[], char resultPath[]) {
 
 }
 
-void ShowBinLogo(char *path){
+void ShowBinLogo(char *path, byte *PDP_MEMORY){
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
     int i;
     FILE *logoBin;
@@ -141,7 +158,7 @@ void ShowBinLogo(char *path){
     fclose(logoBin);
     bool picBit;
     for(i = 0; i < IMG_WIDTH * IMG_WIDTH; i++){
-        picBit = GetBitInByteArray(VROM, i);
+        picBit = GetBitInByteArray(PDP_MEMORY + LOGO_START_INDEX, i);
         printf("%d", picBit);
         if((i + 1) % 64 == 0)
             printf("\n");
@@ -154,7 +171,8 @@ void ShowBinLogo(char *path){
 
 void testingFoo() {
 //    byte tW = 0;
-    ShowBinLogo("../PDP11_ratite/files/logo.txt");
+    StartEmulator(PDP_MEMORY);
+    ShowBinLogo("../PDP11_ratite/files/logo.txt", PDP_MEMORY);
 //    CreateBinLogo("/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.bmp", "/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.txt");
 //    FILE *logoImg;
 //    logoImg = fopen("/Users/carioca/CodingProjects/Qt/test/logo.bmp", "rb");
