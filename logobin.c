@@ -3,6 +3,7 @@
 #include<stdlib.h>
 
 
+
 //Fair work
 ////////////////////////////////////////////////////////////////////////////////
 const int IMG_WIDTH=64;
@@ -36,10 +37,11 @@ bool GetBitInByteArray(byte *array, int index){
 
 
 void PutLogoIntoRom(char *path){
+    int i;
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
     FILE *logoBin;
     logoBin = fopen(path, "rb");
-    for(int i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
+    for(i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
         fscanf(logoBin,"%c",&VROM[i]);
     }
     fclose(logoBin);
@@ -49,6 +51,7 @@ void PutLogoIntoRom(char *path){
 ////////////////////////////////////////////////////////////////////////////////
 void CreateBinLogo(char path[], char resultPath[]) {
     const int IMG_WIDTH=64;
+    int i;
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
     FILE *logoImg;
     int byteCount = 0;
@@ -109,7 +112,7 @@ void CreateBinLogo(char path[], char resultPath[]) {
     fclose(logoImg);
     FILE *logoBin;
     logoBin = fopen(resultPath, "wb");
-    for(int i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++)
+    for(i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++)
         fprintf(logoBin, "%c", VROM[i]);
     fclose(logoBin);
 
@@ -117,14 +120,17 @@ void CreateBinLogo(char path[], char resultPath[]) {
 
 void ShowBinLogo(char *path){
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
+    int i;
     FILE *logoBin;
     logoBin = fopen(path, "rb");
-    for(int i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
+    if(logoBin == NULL)
+        printf("NULL");
+    for(i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
         fscanf(logoBin,"%c",&VROM[i]);
     }
     fclose(logoBin);
     bool picBit;
-    for(int i = 0; i < IMG_WIDTH * IMG_WIDTH; i++){
+    for(i = 0; i < IMG_WIDTH * IMG_WIDTH; i++){
         picBit = GetBitInByteArray(VROM, i);
         printf("%d", picBit);
         if((i + 1) % 64 == 0)
@@ -134,9 +140,11 @@ void ShowBinLogo(char *path){
 
 
 
+
+
 void testingFoo() {
 //    byte tW = 0;
-    ShowBinLogo("/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.txt");
+    ShowBinLogo("../PDP11_ratite/files/logo.txt");
 //    CreateBinLogo("/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.bmp", "/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.txt");
 //    FILE *logoImg;
 //    logoImg = fopen("/Users/carioca/CodingProjects/Qt/test/logo.bmp", "rb");
