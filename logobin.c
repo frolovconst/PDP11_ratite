@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 
+#define IMG_WIDTH 64
 
 
 //Fair work
@@ -14,6 +15,7 @@ const int ROM_START_INDEX = 49552;
 const int LOGO_START_INDEX = 56832;
 const int IO_START_INDEX = 57344;
 const char *LOGO_PATH = "../PDP11_ratite/files/logo.txt";
+//const int IMG_WIDTH=64;
 
 bool CopyLogoToROM(char *logoPath, byte mem[65544]){
     int i;
@@ -77,7 +79,7 @@ void PutLogoIntoRom(char *path){
 //Draft work
 ////////////////////////////////////////////////////////////////////////////////
 void CreateBinLogo(char path[], char resultPath[]) {
-    const int IMG_WIDTH=64;
+    //const int IMG_WIDTH=64;
     int i;
     byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
     FILE *logoImg;
