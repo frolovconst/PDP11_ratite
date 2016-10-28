@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "logobin.h"
+#include "emu_init_funcs.h"
 #include "pipeline.h"
+#include "emulatorbody.h"
 
 
 
