@@ -6,6 +6,8 @@
 
 void testPipeline();
 
+vvvv
+ппппппп пccccc ccccc
 
 
 #endif // PIPELINE_H
