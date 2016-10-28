@@ -1,20 +1,20 @@
-#include "LogoBin.h"
+#include "emu_init_funcs.h"
 #include <stdio.h>
-#include<stdlib.h>
 
-#define IMG_WIDTH 64
+
 
 //Fair work
 ////////////////////////////////////////////////////////////////////////////////
-byte PDP_MEMORY[65544];
-const int RAM_START_INDEX = 0;
-const int VRAM_START_INDEX = 16384;
-const int ROM_START_INDEX = 49552;
-const int LOGO_START_INDEX = 56832;
-const int IO_START_INDEX = 57344;
+
+
 const char *LOGO_PATH = "../PDP11_ratite/files/logo.txt";
 
-bool CopyLogoToROM(char *logoPath, byte mem[65544]){
+bool InitializeMemory(byte mem[MEM_SIZE]){
+    CopyLogoToROM(LOGO_PATH, mem);
+    return true;
+}
+
+bool CopyLogoToROM(const char *logoPath, byte mem[MEM_SIZE]){
     int i;
     FILE *logoBin;
     logoBin = fopen(logoPath, "rb");
@@ -22,17 +22,9 @@ bool CopyLogoToROM(char *logoPath, byte mem[65544]){
         fscanf(logoBin,"%c",&mem[i + LOGO_START_INDEX]);
     }
     fclose(logoBin);
-}
-
-bool InitializeMemory(byte mem[65544]){
-    CopyLogoToROM(LOGO_PATH, mem);
-    return true;
-}
-
-bool StartEmulator(byte mem[65544]){
-    InitializeMemory(mem);
     return false;
 }
+
 
 bool GetBitInByte(byte inByte, int index) {
     return (inByte >> (7 - index)) & 1;
@@ -61,17 +53,6 @@ bool GetBitInByteArray(byte *array, int index){
     return GetBitInByte(array[byteIndex], bitIndex);
 }
 
-
-void PutLogoIntoRom(char *path){
-    int i;
-    byte VROM[IMG_WIDTH * IMG_WIDTH / 8];
-    FILE *logoBin;
-    logoBin = fopen(path, "rb");
-    for(i = 0; i < IMG_WIDTH * IMG_WIDTH / 8; i++){
-        fscanf(logoBin,"%c",&VROM[i]);
-    }
-    fclose(logoBin);
-}
 
 //Draft work
 ////////////////////////////////////////////////////////////////////////////////
@@ -170,8 +151,8 @@ void ShowBinLogo(char *path, byte *PDP_MEMORY){
 
 void testingFoo() {
 //    byte tW = 0;
-    StartEmulator(PDP_MEMORY);
-    ShowBinLogo("../PDP11_ratite/files/logo.txt", PDP_MEMORY);
+//    StartEmulator(PDP_MEMORY);
+//    ShowBinLogo("../PDP11_ratite/files/logo.txt", PDP_MEMORY);
 //    CreateBinLogo("/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.bmp", "/Users/carioca/CodingProjects/Qt/PDP11_ratite/logo.txt");
 //    FILE *logoImg;
 //    logoImg = fopen("/Users/carioca/CodingProjects/Qt/test/logo.bmp", "rb");

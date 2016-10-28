@@ -4,12 +4,14 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.c \
-    logobin.c \
-    pipeline.c
+    pipeline.c \
+    emulatorbody.c \
+    emu_init_funcs.c
 
 HEADERS += \
-    logobin.h \
-    pipeline.h
+    pipeline.h \
+    emulatorbody.h \
+    emu_init_funcs.h
 
 DISTFILES += \
     logo.txt
