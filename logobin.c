@@ -7,7 +7,7 @@
 
 //Fair work
 ////////////////////////////////////////////////////////////////////////////////
-const int IMG_WIDTH=64;
+//const int IMG_WIDTH=64;
 byte PDP_MEMORY[65544];
 const int RAM_START_INDEX = 0;
 const int VRAM_START_INDEX = 16384;

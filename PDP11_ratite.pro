@@ -4,10 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.c \
-    logobin.c
+    logobin.c \
+    pipeline.c
 
 HEADERS += \
-    logobin.h
+    logobin.h \
+    pipeline.h
 
 DISTFILES += \
     logo.txt
