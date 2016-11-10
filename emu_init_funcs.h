@@ -10,10 +10,17 @@
 #define VRAM_START_INDEX 16384
 #define ROM_START_INDEX 49152
 #define LOGO_START_INDEX 56832
-#define IO_START_INDEX 57344
+#define IO_START_INDEX
 
 typedef uint8_t byte;
 typedef uint16_t word;
+
+extern word registers[7];
+extern word IR;
+extern word operand1;
+extern word operand2;
+extern word PC;
+extern byte MEMORY[MEM_SIZE];
 
 void SetBitInByte(byte *, int, bool);
 void SetBitInByteArray(byte *, int, bool);
@@ -22,6 +29,5 @@ bool CopyLogoToROM(const char *logoPath, byte mem[MEM_SIZE]);
 bool ResetVRAM(byte [MEM_SIZE]);
 bool ResetMEM(byte mem[MEM_SIZE]);
 bool GetBitInByteArray(byte *array, int index);
-
 
 #endif // EMUINITFUNCS_H

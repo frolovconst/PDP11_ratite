@@ -6,12 +6,14 @@ CONFIG -= qt
 SOURCES += main.c \
     pipeline.c \
     emulatorbody.c \
-    emu_init_funcs.c
+    emu_init_funcs.c \
+    mem_funcs.c
 
 HEADERS += \
-    pipeline.h \
     emulatorbody.h \
-    emu_init_funcs.h
+    emu_init_funcs.h \
+    mem_funcs.h \
+    pipeline.h
 
 DISTFILES += \
     logo.txt
