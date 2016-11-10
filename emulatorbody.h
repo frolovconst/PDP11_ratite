@@ -6,4 +6,5 @@
 bool StartEmu();
 bool InitializeMemory(byte *);
 
+
 #endif // EMULATORBODY_H

@@ -7,9 +7,8 @@
 
 int main()
 {
-    printf("Hello World!\n");
-    testingFoo();
-    testPipeline();
+    StartEmu();
+
     return 0;
 }
 

@@ -10,7 +10,10 @@
 const char *LOGO_PATH = "../PDP11_ratite/files/logo.txt";
 
 bool InitializeMemory(byte mem[MEM_SIZE]){
+    ResetMEM(mem);
     CopyLogoToROM(LOGO_PATH, mem);
+    //TODO: Implement PC initializaion
+    InitializePC(mem);
     return true;
 }
 
@@ -22,6 +25,18 @@ bool CopyLogoToROM(const char *logoPath, byte mem[MEM_SIZE]){
         fscanf(logoBin,"%c",&mem[i + LOGO_START_INDEX]);
     }
     fclose(logoBin);
+    return false;
+}
+
+bool InitializePC(byte mem[MEM_SIZE]){
+
+}
+
+bool ResetMEM(byte mem[MEM_SIZE]){
+    int i;
+    for(i = 0; i < MEM_SIZE; i++){
+        mem[i] = 0;
+    }
     return false;
 }
 
@@ -138,7 +153,7 @@ void ShowBinLogo(char *path, byte *PDP_MEMORY){
     fclose(logoBin);
     bool picBit;
     for(i = 0; i < IMG_WIDTH * IMG_WIDTH; i++){
-        picBit = GetBitInByteArray(PDP_MEMORY + LOGO_START_INDEX, i);
+        picBit = GetBitInByteArray(&PDP_MEMORY[LOGO_START_INDEX], i);
         printf("%d", picBit);
         if((i + 1) % 64 == 0)
             printf("\n");
