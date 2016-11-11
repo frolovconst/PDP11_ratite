@@ -15,19 +15,23 @@
 typedef uint8_t byte;
 typedef uint16_t word;
 
-extern word registers[7];
-extern word IR;
-extern word operand1;
-extern word operand2;
-extern bool isRegisterOperator1;
-extern bool isRegisterOperator2;
+ word registers[7];
+ word IR;
+ word operand1;
+ word operand2;
+ bool isRegisterOperator1;
+ bool isRegisterOperator2;
 
-extern word PC;
-extern byte MEMORY[MEM_SIZE];
+ word PC;
+ byte MEMORY[MEM_SIZE];
 
 void SetBitInByte(byte *, int, bool);
 void SetBitInByteArray(byte *, int, bool);
 void testingFoo();
 bool CopyLogoToROM(const char *logoPath, byte mem[MEM_SIZE]);
+bool ResetVRAM(byte [MEM_SIZE]);
+bool ResetMEM(byte mem[MEM_SIZE]);
+bool GetBitInByteArray(byte *array, int index);
+bool InitializePC(byte mem[MEM_SIZE]);
 
 #endif // EMUINITFUNCS_H
