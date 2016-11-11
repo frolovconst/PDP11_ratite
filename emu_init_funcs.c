@@ -29,7 +29,7 @@ bool CopyLogoToROM(const char *logoPath, byte mem[MEM_SIZE]){
 }
 
 bool InitializePC(byte mem[MEM_SIZE]){
-
+    return false;
 }
 
 bool ResetMEM(byte mem[MEM_SIZE]){

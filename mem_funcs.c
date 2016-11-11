@@ -1,5 +1,5 @@
 #include "mem_funcs.h"
-
+#include<stdio.h>
 
 void printRegisters() {
     registers[6] = PC;

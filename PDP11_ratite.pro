@@ -13,6 +13,7 @@ HEADERS += \
     emulatorbody.h \
     emu_init_funcs.h \
     mem_funcs.h \
+    pipeline.h \
     pipeline.h
 
 DISTFILES += \
