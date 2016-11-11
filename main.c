@@ -3,7 +3,7 @@
 #include "emulatorbody.h"
 #include "mem_funcs.h"
 
-word registers[7] = {01,02,03,04,00,00,00};
+word registers[7] = {01,02,03,04,05,00,00};
 word IR = 00; // Instruction Register
 word operand1 = 00;
 word operand2 = 00;

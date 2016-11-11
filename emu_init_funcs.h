@@ -19,6 +19,9 @@ extern word registers[7];
 extern word IR;
 extern word operand1;
 extern word operand2;
+extern bool isRegisterOperator1;
+extern bool isRegisterOperator2;
+
 extern word PC;
 extern byte MEMORY[MEM_SIZE];
 

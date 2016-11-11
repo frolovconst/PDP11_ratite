@@ -7,7 +7,8 @@ SOURCES += main.c \
     pipeline.c \
     emulatorbody.c \
     emu_init_funcs.c \
-    mem_funcs.c
+    mem_funcs.c \
+    operations.c
 
 HEADERS += \
     emulatorbody.h \
