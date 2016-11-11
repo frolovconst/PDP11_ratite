@@ -18,6 +18,10 @@ byte getTriade(word inByte, int index) { //gives octal digit. Index 0 starts fro
     return ((inByte >> ( 15 - 3 * index)) & 7);
 }
 
+byte twoOctal(byte bOne, byte bTwo) {
+    return ((word)bOne * 8) + ((word) bTwo);
+}
+
 void setWord(int address, word _word) {
     MEMORY[address] = _word & 255;
     MEMORY[++address] = _word >> 8;

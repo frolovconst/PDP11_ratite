@@ -11,5 +11,6 @@ byte getTriade(word inByte, int index);
 void setWord(int address, word _word);
 word getWord(int address);
 
+byte twoOctal(byte,byte);
 
 #endif // MEM_FUNCS_H
