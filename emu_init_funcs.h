@@ -12,8 +12,8 @@
 #define LOGO_START_INDEX 56832
 #define IO_START_INDEX
 
-typedef uint8_t byte;
-typedef uint16_t word;
+typedef uint8_t byte;  // 1
+typedef uint16_t word;  // 1
 
  word registers[7];
  word IR;
@@ -25,8 +25,8 @@ typedef uint16_t word;
  word PC;
  byte MEMORY[MEM_SIZE];
 
-void SetBitInByte(byte *, int, bool);
-void SetBitInByteArray(byte *, int, bool);
+void SetBitInByte(byte *, int, bool);       // 1
+void SetBitInByteArray(byte *, int, bool);  // 1
 void testingFoo();
 bool CopyLogoToROM(const char *logoPath, byte mem[MEM_SIZE]);
 bool ResetVRAM(byte [MEM_SIZE]);

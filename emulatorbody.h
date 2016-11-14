@@ -5,6 +5,6 @@
 
 bool StartEmu();
 bool InitializeMemory(byte *);
-
+byte *GetPointerToVRAM();
 
 #endif // EMULATORBODY_H

@@ -4,18 +4,21 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.c \
-    pipeline.c \
-    emulatorbody.c \
-    emu_init_funcs.c \
-    mem_funcs.c \
-    operations.c
+    ratite_body.c \
+    ratite_mem_funcs.c \
+    memory_init.c \
+    pipelatz.c \
+    instructiondecoder.c \
+    ratite_instructions.c
 
 HEADERS += \
-    emulatorbody.h \
-    emu_init_funcs.h \
-    mem_funcs.h \
-    pipeline.h \
-    pipeline.h
+    definitions.h \
+    ratite_mem_funcs.h \
+    memory_init.h \
+    ratite_body.h \
+    pipelatz.h \
+    instructiondecoder.h \
+    ratite_instructions.h
 
 DISTFILES += \
     logo.txt
