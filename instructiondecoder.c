@@ -6,7 +6,7 @@ bool DecodeAndExecute(word IR, byte MEMORY[MEM_SIZE]) {
 //    *byteAddressing = getBitInWord(IR, 15);
     byte oct1 = getTriade(IR, 1);
     byte oct2 = getTriade(IR, 2);
-    byte oct3 = getTriade(IR,3);//считаем триады слева
+    byte oct3 = getTriade(IR, 3);//считаем триады слева
 
     if (!MSB) {                                                 // Most-significant bit
         if (!oct1) {                                            // If single-operand operation
@@ -18,9 +18,13 @@ bool DecodeAndExecute(word IR, byte MEMORY[MEM_SIZE]) {
             }
         }
         else if(oct1 == 7){                                     //register source operand instrucs
-
-            switch (twoOctal(oct1, oct2)) {
-            case SOB: //sob();
+            int regNum = oct3;
+            byte oct4 = getTriade(IR,4);
+            byte oct5 = getTriade(IR,5);
+            byte DD = twoOctal(oct4, oct5);
+            switch (oct2) {
+            case SOB:
+                sob(MEMORY, regNum, DD);
                 break;
             default:
                 break;
@@ -33,6 +37,9 @@ bool DecodeAndExecute(word IR, byte MEMORY[MEM_SIZE]) {
             switch (oct1) {                         // Octal digit 1
             case 1:
                 mov(MEMORY, opSSindex, opDDindex);
+                break;
+            case ADD:
+                add(MEMORY, opSSindex, opDDindex);
                 break;
             default:
                 break;
@@ -53,20 +60,19 @@ int DecodeDoubleInstOperand(word IR, int opNum, byte MEMORY[MEM_SIZE]){
 
 int readOperand(byte mode, byte regNumHalf, byte MEMORY[MEM_SIZE]){
     int operandIndex;
-    word reg = getWordInByteArray(MEMORY, REG_START_ADDR + 2*regNumHalf);
+    word regContents = getWordInByteArray(MEMORY, REG_START_ADDR + 2*regNumHalf);
 
     switch (mode) {
-        case MODE0:
-            operandIndex = REG_START_ADDR + 2*regNumHalf;
-//            operand = &MEMORY[REG_START_ADDR + 2*regNumHalf];
-//            tempIsRegisterOperator = true;
+
+    case MODE0:
+        operandIndex = REG_START_ADDR + 2*regNumHalf;
         break;
-        case MODE2:
-            operandIndex = reg;
-//            operand = &MEMORY[reg++];
-//            setWordInByteArray(MEMORY, REG_START_ADDR + 2*regNumHalf, reg);
-//            registers[regNumHalf]++;
-//            tempIsRegisterOperator = false;
+    case MODE1:
+        operandIndex = regContents;
+        break;
+    case MODE2:
+        operandIndex = regContents;
+        setWordInByteArray(MEMORY, REG_START_ADDR + 2*regNumHalf, operandIndex + 2);
         break;
 //        case MODE4:    //дальше пока не делал!!!!!!!!!!!!!
 //            reg = --registers[regNumHalf];

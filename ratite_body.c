@@ -3,34 +3,29 @@
 #include <stdio.h>
 
 byte MEMORY[MEM_SIZE];
-word PC;
 const char *MEM_STATE_FILE_PATH = "../PDP11_ratite/files/mem.txt";
 
 bool Start(){
-    InitializeMemory(MEMORY, &PC);
-    WriteMemoryStateToFile(MEMORY, PC);
+    InitializeMemory(MEMORY);
+    WriteMemoryStateToFile(MEMORY);
     return false;
 }
 
 bool Step(){
-    ReadMemoryStateFromFile(MEMORY, &PC);
-    ExecuteNextInstructionSet(MEMORY, &PC);
-    WriteMemoryStateToFile(MEMORY, PC);
-    PC ++;
-    ReadMemoryStateFromFile(MEMORY, &PC);
+    ReadMemoryStateFromFile(MEMORY);
+    ExecuteNextInstructionSet(MEMORY);
+    WriteMemoryStateToFile(MEMORY);
     return false;
 }
 
 byte *GetPointerToVRAM(){
-    return &MEMORY[LOGO_START_INDEX];
-//    return &MEMORY[PC];
+    return &MEMORY[VRAM_START_INDEX];
 }
 
-bool WriteMemoryStateToFile(byte mem[MEM_SIZE], word PrgCnt){
-    int i, lclPC = PrgCnt;
+bool WriteMemoryStateToFile(byte mem[MEM_SIZE]){
+    int i;
     FILE *memState;
     memState = fopen(MEM_STATE_FILE_PATH, "wb");
-    fprintf(memState,"%d",lclPC);
     for(i = 0; i < MEM_SIZE ; i++){
         fprintf(memState,"%c",mem[i]);
     }
@@ -38,12 +33,10 @@ bool WriteMemoryStateToFile(byte mem[MEM_SIZE], word PrgCnt){
     return false;
 }
 
-bool ReadMemoryStateFromFile(byte mem[MEM_SIZE], word *PrgCnt){
-    int i, lclPC;
+bool ReadMemoryStateFromFile(byte mem[MEM_SIZE]){
+    int i;
     FILE *memState;
     memState = fopen(MEM_STATE_FILE_PATH, "rb");
-    fscanf(memState,"%d",&lclPC);
-    *PrgCnt = lclPC;
     for(i = 0; i < MEM_SIZE ; i++){
         fscanf(memState,"%c",&mem[i]);
     }

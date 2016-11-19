@@ -8,6 +8,7 @@ typedef uint8_t byte;
 typedef uint16_t word;
 
 #define IMG_WIDTH 64
+#define VRAM_WIDTH 256
 #define MEM_SIZE 65552
 #define RAM_START_INDEX 0
 #define VRAM_START_INDEX 16384
@@ -15,5 +16,6 @@ typedef uint16_t word;
 #define LOGO_START_INDEX 56832
 #define IO_START_INDEX 0160000
 #define REG_START_ADDR 65536
+#define PC_INDX 65550
 
 #endif // DEFINITIONS_H

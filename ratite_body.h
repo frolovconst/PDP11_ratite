@@ -6,8 +6,8 @@
 
 bool Start();
 bool Step();
-bool WriteMemoryStateToFile(byte [MEM_SIZE], word );
-bool ReadMemoryStateFromFile(byte [MEM_SIZE], word *);
+bool WriteMemoryStateToFile(byte [MEM_SIZE]);
+bool ReadMemoryStateFromFile(byte [MEM_SIZE]);
 byte *GetPointerToVRAM();
 
 #endif // RATITE_BODY_H

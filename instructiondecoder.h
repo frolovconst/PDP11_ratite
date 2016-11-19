@@ -5,12 +5,14 @@
 #define INSTRUCTIONDECODER_H
 
 #define MODE0 00
+#define MODE1 01
 #define MODE2 02
 #define MODE4 04
 #define MODE6 06
 
 #define INC 052
-#define SOB 077
+#define SOB 07
+#define ADD 06
 
 #define SINGLE_OPERAND 0
 

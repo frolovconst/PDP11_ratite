@@ -4,7 +4,7 @@
 #ifndef PIPELATZ_H
 #define PIPELATZ_H
 
-bool ExecuteNextInstructionSet(byte [MEM_SIZE], word *);
-word fetch(byte mem[MEM_SIZE], word *PC);
+bool ExecuteNextInstructionSet(byte [MEM_SIZE]);
+word fetch(byte [MEM_SIZE]);
 
 #endif // PIPELATZ_H
