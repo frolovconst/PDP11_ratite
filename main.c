@@ -15,7 +15,7 @@ int main()
     for(i = 0; i < VRAM_WIDTH * VRAM_WIDTH; i++){
             picBit = (VRAMpointer[i/8] >> (7-i%8))&1;
             printf("%d", picBit);
-            if((i + 1) % IMG_WIDTH == 0)
+            if((i + 1) % VRAM_WIDTH == 0)
                 printf("\n");
         }
     } // end test mem OUT

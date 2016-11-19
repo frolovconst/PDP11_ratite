@@ -8,7 +8,8 @@ bool InitializeMemory(byte mem[MEM_SIZE]){
     ResetMEM(mem);
     CopyLogoToROM(LOGO_PATH, mem);
     InitializePC(mem);
-    InitializeROM(mem);
+    InitializeVRAM(mem);
+//    DebugInstrs(mem);
     return true;
 }
 
@@ -36,7 +37,7 @@ bool ResetMEM(byte mem[MEM_SIZE]){
     return false;
 }
 
-bool InitializeROM(byte mem[MEM_SIZE]){
+bool InitializeVRAM(byte mem[MEM_SIZE]){
     CopyLogoToVRAM(mem);
     return false;
 }
@@ -45,7 +46,7 @@ bool CopyLogoToVRAM(byte mem[MEM_SIZE]){
     word writeIndex = ROM_START_INDEX;
     setWordInByteArray(mem, writeIndex, 012702);            // init line sob
     writeIndex += 2;
-    setWordInByteArray(mem, writeIndex, 65);
+    setWordInByteArray(mem, writeIndex, 64);
     writeIndex += 2;
     setWordInByteArray(mem, writeIndex, 012700);            // init ROM start
     writeIndex += 2;
@@ -53,11 +54,13 @@ bool CopyLogoToVRAM(byte mem[MEM_SIZE]){
     writeIndex += 2;
     setWordInByteArray(mem, writeIndex, 012701);            // init VRAM start
     writeIndex += 2;
-    setWordInByteArray(mem, writeIndex, VRAM_START_INDEX - 72);// + 3084);            // ADD #5
+    setWordInByteArray(mem, writeIndex, VRAM_START_INDEX + 3084);            // ADD #5
     writeIndex += 2;
+
+
     setWordInByteArray(mem, writeIndex, 012703);            // init inline sob
     writeIndex += 2;
-    setWordInByteArray(mem, writeIndex, 5);            // ADD #5
+    setWordInByteArray(mem, writeIndex, 4);            // ADD #5
     writeIndex += 2;
     setWordInByteArray(mem, writeIndex, 012021);
     writeIndex += 2;
@@ -65,9 +68,39 @@ bool CopyLogoToVRAM(byte mem[MEM_SIZE]){
     writeIndex += 2;
     setWordInByteArray(mem, writeIndex, 062701);
     writeIndex += 2;
-    setWordInByteArray(mem, writeIndex, 0);
+    setWordInByteArray(mem, writeIndex, 24);
     writeIndex += 2;
     setWordInByteArray(mem, writeIndex, 077207);
     writeIndex += 2;
+
+    return false;
+}
+
+bool DebugInstrs(byte mem[MEM_SIZE]){
+    //test data
+    setWordInByteArray(mem, LOGO_START_INDEX, 65534);
+    setWordInByteArray(mem, LOGO_START_INDEX + 2, 65534);
+
+
+    word writeIndex = ROM_START_INDEX;
+    setWordInByteArray(mem, writeIndex, 012700);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, LOGO_START_INDEX);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, 012701);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, VRAM_START_INDEX);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, 012021);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, 062701);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, 62);
+    writeIndex += 2;
+    setWordInByteArray(mem, writeIndex, 012021);
+    writeIndex += 2;
+
+//    setWordInByteArray(mem, writeIndex, 65535);
+//    writeIndex += 2;
     return false;
 }
